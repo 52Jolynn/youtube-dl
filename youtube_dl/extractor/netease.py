@@ -63,7 +63,7 @@ class NeteaseIE(InfoExtractor):
             entry['formats'].append({
                 'url' : regex.group('url'),
                 'ext' : 'flv',
-                'quality' : -1
+                'quality' : 0
             })
 
         regex = re.search(r'(?is)<shdUrl>(?:[\r\n]*<flv>[\r\n]*(?P<url>.+?)[\r\n]*</flv>[\r\n]*)+</shdUrl>', xml)
@@ -71,7 +71,7 @@ class NeteaseIE(InfoExtractor):
             entry['formats'].append({
                 'url' : regex.group('url'),
                 'ext' : 'flv',
-                'quality' : -1
+                'quality' : 1
             })
 
         return {
