@@ -68,7 +68,9 @@ class QqVideoIE(InfoExtractor):
         title = album_hd_xml.find('./vl/vi/ti').text
 
         entries = []
-        hd_vtypes = {v.find('./name').text: v.find('./id').text for v in album_hd_xml.findall('./fl/fi')}
+        hd_vtypes = {}
+        for v in album_hd_xml.findall('./fl/fi'):
+            hd_vtypes[v.find('./name').text] = v.find('./id').text
         hd_fclip = int(album_hd_xml.find('./vl/vi/cl/fc').text)
         hd_filename = album_hd_xml.find('./vl/vi/fn').text
         hd_base_url = album_hd_xml.findall('./vl/vi/ul/ui/url')[-1].text
@@ -101,7 +103,9 @@ class QqVideoIE(InfoExtractor):
                 }]
             })
 
-        shd_vtypes = {v.find('./name').text: v.find('./id').text for v in album_shd_xml.findall('./fl/fi')}
+        shd_vtypes = {}
+        for v in album_shd_xml.findall('./fl/fi'):
+            shd_vtypes[v.find('./name').text] = v.find('./id').text
         shd_fclip = album_shd_xml.find('./vl/vi/cl/fc').text
         shd_filename = album_shd_xml.find('./vl/vi/fn').text
         shd_base_url = album_shd_xml.findall('./vl/vi/ul/ui/url')[-1].text
